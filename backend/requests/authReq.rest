@@ -1,0 +1,30 @@
+@baseUrl = http://localhost:3030/api/auth
+
+GET http://localhost:3030/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDQ1M2VmMTlhZGQ5MTE1ZmRkOTg4MDAiLCJ1c2VyTmFtZSI6Imp1c3RpbiIsImlhdCI6MTYxNTMwMjI4MX0.Hq_yKp3Te9TZpIda4VZrp3_iSkuvi0RhMQq_YHjBP3M
+
+###
+
+GET {{baseUrl}}/60453ef19add9115fdd98800
+
+###
+
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+    "username": "justin",
+    "email": "justinmann24@gmail.com",
+    "password": "Balchlake8*&$"
+}
+
+###
+
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "justinmann24@gmail.com",
+    "password": "Balchlake8*&$"
+}

@@ -1,0 +1,40 @@
+@baseUrl = http://localhost:3030/api/listings
+
+GET {{baseUrl}}
+
+###
+
+GET {{baseUrl}}/60465722cb443014393c254b/
+
+###
+
+POST {{baseUrl}}/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjYwMjZkMzU2YzBmY2YyMWQ1ZGM2NTE5NCIsInVzZXJOYW1lIjoianVzdGluIn0sImlhdCI6MTYxMzY4MDg3N30.eu7kfHGg9cKIVG5fzidr1u-d6Wq81hw9u1h4Ba41jWE
+
+{
+    "title": "Perfect 2 bedroom city escape",
+    "description": "Boston city apartment right near fenway",
+    "numberOfGuests": "5",
+    "numberOfRooms": "3",
+    "numberOfBeds": "3",
+    "numberOfBaths": "1",
+    "price": "110",
+    "userId": "605168e8351cc42ae19b91b8",
+    "amenities": ["washer", "dryer", "grill", "toaster"]
+}
+
+###
+
+POST {{baseUrl}}/60465760cb443014393c254c/update
+Content-Type: application/json
+
+{
+    "title": "Perfect 2 bedroom city escape",
+    "description": "oh oh oh oh oh oh oh oh oh oh",
+    "numberOfGuests": "5",
+    "numberOfRooms": "3",
+    "numberOfBeds": "3",
+    "numberOfBaths": "1",
+    "price": "$110/night"
+}

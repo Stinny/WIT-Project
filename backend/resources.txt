@@ -1,0 +1,11 @@
+DES: using S3 buckets with nodejs
+URL: https://medium.com/codebase/using-aws-s3-buckets-in-a-nodejs-app-74da2fc547a6
+
+DES: possible library for creating btc addresses and transactions
+URL: https://github.com/bitpay/bitcore/tree/master/packages/bitcore-lib
+
+DES: relationships in mongodb
+URL: https://dev.to/oluseyeo/how-to-create-relationships-with-mongoose-and-node-js-11c8
+
+DES: keeping your api secure
+URL: https://itnext.io/make-security-on-your-nodejs-api-the-priority-50da8dc71d68

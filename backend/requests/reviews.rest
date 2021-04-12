@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:3030/api/reviews
+
+GET {{baseUrl}}/60465722cb443014393c254b
+
+###
+
+POST {{baseUrl}}/create
+Content-Type: application/json
+
+{
+    "listingId": "60465722cb443014393c254b",
+    "userId": "ksjf77sg898fsksf9sf",
+    "title": "Very good host",
+    "content": "these people provided the best expierence"
+}
+
+###
+
+DELETE {{baseUrl}}/deletereview
+Content-Type: application/json
+
+{
+    "reviewId": "604667f8b160a01f970ae658",
+    "listingId": "60465722cb443014393c254b"
+}
+
+###
+
+POST {{baseUrl}}/60466806b160a01f970ae659/update
+Content-Type: application/json
+
+{
+    "title": "updated title",
+    "content": "this review got updated!(SHIT)"
+}

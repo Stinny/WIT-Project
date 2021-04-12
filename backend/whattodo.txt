@@ -1,0 +1,22 @@
+What To Do:
+
+3/8
+- all review routes(CRUD) [X]
+- all listing routes(CRUD) [X]
+- create middleware for protected routes [X]
+    > auth only
+    > user owned only (editing lisitings and reviews)
+- add correct middleware to correct routes [X]
+- profile routes(CRUD) [X]
+- image uploads [X]
+
+3/16
+- finish up image uploads for listings [X]
+- finish up listings create page [X]
+- figure out the request user stuff for protected urls and creating/editing listings [X]
+
+3/17
+- create a user only page with their listings []
+- create permissions and apply them to listing routes []
+- create simple profile page []
+- create some kind messages for displaying errors (ex. login errors) []

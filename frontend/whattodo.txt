@@ -1,0 +1,25 @@
+
+What To Do
+
+4/8 (in order) NEED TO COME BACK IMAGE UPLOAD WONT WORK
+[]finish create listing flow
+    - all details
+    - all amenities
+    - all images
+    - permissions on routes
+
+[]Finish listing detail page
+    - reviews working
+    - reserve form working
+    - display all details/amenities
+
+4/12
+[] create form for submitting reviews
+[] get reviews working on detail page
+
+PATH TO FINAL APP:
+- Get all functionality working
+- Add messages for user messages/errors
+- Add email service for transactional emails
+- Add in Bitcoin someway
+- Debug.

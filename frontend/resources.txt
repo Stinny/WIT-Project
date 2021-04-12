@@ -1,0 +1,11 @@
+DES: how to use material ui hooks in class components
+URL: https://stackoverflow.com/questions/56554586/how-to-use-usestyle-to-style-class-component-in-material-ui
+
+DES: how to wait for axios call before rendering it
+URL: https://codewithnico.com/react-wait-axios-to-render/
+
+DES: how to host on airbnb
+URL: https://thepointsguy.com/guide/airbnb-host-guide/
+
+DES: deploy reactjs app on digital ocean app platform
+URL: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-react-application-to-digitalocean-app-platform
