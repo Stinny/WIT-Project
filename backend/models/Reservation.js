@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const reviewSchema = new mongoose.Schema({
+const resSchema = new mongoose.Schema({
   listingId: {
     type: String,
     required: true,
@@ -9,18 +9,18 @@ const reviewSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userName: {
+  numberOfGuests: {
     type: String,
     required: true,
   },
-  content: {
+  startDate: {
     type: String,
     required: true,
   },
-  createdOn: {
-    type: Date,
+  endDate: {
+    type: String,
     default: Date.now,
   },
 });
 
-module.exports = mongoose.model('Review', reviewSchema);
+module.exports = mongoose.model('Reservation', resSchema);

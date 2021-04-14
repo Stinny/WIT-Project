@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 //bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //antd
@@ -58,11 +57,13 @@ const ImagesUpload = () => {
   };
 
   const handleChange = (e) => {
-    setSelectedFiles(e.fileList);
+    if (e.target.files) {
+      setSelectedFiles(e.target.files);
+    }
   };
 
   const fileUploader = () => {
-    const formData = new FormData();
+    const data = new FormData();
 
     if (selectedFiles) {
       //for loop to loop through the selected files and add them to the form data
@@ -71,16 +72,18 @@ const ImagesUpload = () => {
       // });
       for (let i = 0; i < selectedFiles.length; i++) {
         console.log(selectedFiles[i]);
-        formData.append('listingImage', selectedFiles[i], selectedFiles[i]);
+        data.append('listingImage', selectedFiles[i]);
       }
+
+      console.log(data);
 
       axios
         .post(`http://localhost:3030/api/listings/${listingId}/uploadimages`, {
-          data: formData,
+          data: data,
           headers: {
             accept: 'application/json',
             'Accept-Language': 'en-US,en;q=0.8',
-            'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+            'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
           },
         })
         .then((res) => {
@@ -113,8 +116,7 @@ const ImagesUpload = () => {
               align='center'
             >
               Listing on Kretey is a simple two step process until your property
-              is ready for renters. Submit all the details and upload some
-              beautiful pictures
+              is ready for reservations
             </Typography>
           </Container>
         </Col>
@@ -135,12 +137,7 @@ const ImagesUpload = () => {
         <Col>
           <Container className={classes.formBox}>
             <Form>
-              <Upload listType='picture-card' onChange={handleChange} multiple>
-                {uploadButton}
-              </Upload>
-              <Modal>
-                <img alt='example' style={{ width: '100%' }} />
-              </Modal>
+              <input type='file' multiple onChange={handleChange} />
               <Button variant='secondary' onClick={fileUploader} block>
                 UPLOAD & FINISH
               </Button>

@@ -38,10 +38,10 @@ const ListingCard = ({ listing, index }) => {
           <CardActionArea>
             <CardMedia
               component='img'
-              alt='Contemplative Reptile'
+              alt='Listing Image'
               height='140'
               image={listing.imgUrls[0]}
-              title='Contemplative Reptile'
+              title='Listing image'
             />
             <CardContent>
               <Typography gutterBottom variant='h5' component='h2'>

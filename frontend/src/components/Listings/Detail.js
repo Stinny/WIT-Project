@@ -5,6 +5,7 @@ import { getListing } from '../../actions/listings';
 import axiosInstance from '../../api';
 import ReviewForm from '../Listings/ReviewForm';
 import Reviews from '../Listings/Reviews';
+import ReserveForm from '../Listings/ReserveForm';
 
 //material ui
 import { Container, Typography, Button } from '@material-ui/core';
@@ -46,7 +47,7 @@ const useStyles = makeStyles({
   },
   bookingView: {
     backgroundColor: 'white',
-    height: '375px',
+    height: '450px',
     width: '260px',
     marginTop: '30px',
     marginBottom: '20px',
@@ -54,17 +55,13 @@ const useStyles = makeStyles({
   },
   reviewView: {
     backgroundColor: 'white',
-    height: '400px',
+    height: '550px',
     marginTop: '30px',
   },
   listingImg: {
     width: '650px',
     height: '430px',
     marginTop: '10px',
-  },
-  bookButt: {
-    margin: 'auto',
-    width: '200px',
   },
 });
 
@@ -112,6 +109,8 @@ const Detail = () => {
     );
   }
 
+  console.log(listing.amenities);
+
   return (
     <>
       <Row justify='center'>
@@ -140,73 +139,36 @@ const Detail = () => {
 
         <Col>
           <Container className={classes.bookingView}>
-            <div
-              style={{
-                backgroundColor: 'white',
-                width: '200px',
-                height: '50px',
-              }}
-            >
-              <Typography variant='h5'>${listing.price} /night</Typography>
-            </div>
-
-            <div
-              style={{
-                backgroundColor: '#f7f7f7',
-                width: '200px',
-                height: '200px',
-                marginBottom: '10px',
-              }}
-            >
-              <Typography variant='subtitle1'>Start Date</Typography>
-              <Typography variant='subtitle1'>End Date</Typography>
-            </div>
-
-            <div
-              style={{
-                backgroundColor: 'white',
-                width: '200px',
-                height: '50px',
-              }}
-            >
-              <Button
-                color='primary'
-                variant='contained'
-                className={classes.bookButt}
-              >
-                Reserve
-              </Button>
-              <Typography
-                variant='subtitle2'
-                color='textSecondary'
-                align='center'
-              >
-                Not charged yet
-              </Typography>
-            </div>
+            <Typography align='center' variant='h5'>
+              Reserve Here
+            </Typography>
+            <Divider />
+            <ReserveForm listing={listing} />
           </Container>
         </Col>
       </Row>
 
       <Row justify='center'>
         <Container className={classes.listingDetails} maxWidth='md'>
-          <div>
-            <Typography variant='h5'>Entire Place Hosted By Maria</Typography>
-            <Avatar
-              src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
-              alt='Han Solo'
-            />
-
-            <Divider />
-          </div>
+          <Typography variant='h5'>Entire Place Hosted By Maria</Typography>
+          <Divider />
+          <Typography variant='h3'>Amenities</Typography>
+          <Row gutter={16}>
+            {listing.amenities &&
+              listing.amenities.map((amen) => (
+                <Col>
+                  <Typography variant='h6'>{amen}</Typography>
+                </Col>
+              ))}
+          </Row>
         </Container>
       </Row>
 
       <Row justify='center'>
         <Container maxWidth='md' className={classes.reviewView}>
           <Typography variant='h4'>Reviews</Typography>
-          <ReviewForm listingId={listing._id} />
           <Reviews listingId={listing._id} />
+          <ReviewForm listingId={listing._id} />
         </Container>
       </Row>
     </>

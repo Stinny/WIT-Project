@@ -10,3 +10,5 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const GET_USER_INFO = 'GET_USER_INFO';
+
+export const ERROR = 'ERROR';

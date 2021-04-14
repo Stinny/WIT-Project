@@ -15,10 +15,12 @@ server.use(setUser);
 const authRoutes = require('./routes/auth');
 const listingRoutes = require('./routes/listings');
 const reviewRoutes = require('./routes/reviews');
+const resRoutes = require('./routes/reservations');
 
 server.use('/api/auth', authRoutes);
 server.use('/api/listings', listingRoutes);
 server.use('/api/reviews', reviewRoutes);
+server.use('/api/reservations', resRoutes);
 
 server.get('/', (req, res) => {
   res.send('This is the home route');

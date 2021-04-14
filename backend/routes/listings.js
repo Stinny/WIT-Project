@@ -167,6 +167,22 @@ router.post('/:listingId/update', setListing, async (req, res) => {
   }
 });
 
+//route for deleting a listing
+router.delete('/delete/:listingId', async (req, res) => {
+  try {
+    const listing = await Listing.findById(req.params.listingId);
+    if (!listing) throw Error('No listing found');
+
+    const removed = await listing.remove();
+    if (!removed)
+      throw Error('Something went wrong while trying to delete listing');
+
+    res.status(200).json({ success: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 //route for creating reviews on a listing
 router.post('/review/:listingId', async (req, res) => {
   const listingId = req.params.listingId;
@@ -177,10 +193,9 @@ router.post('/review/:listingId', async (req, res) => {
   if (!req.user) return res.send('Must be logged in');
 
   const user = await User.findById(req.user.userId); //user info of user who is writing review
-  const { title, content } = req.body; //data in request body for creation of Review
+  const { content } = req.body; //data in request body for creation of Review
 
   const review = new Review({
-    title: title,
     content: content,
     listingId: listingId,
     userId: req.user.userId,
@@ -202,7 +217,7 @@ router.get('/reviews/:listingId', async (req, res) => {
 
   if (!reviews) return res.status(200).send('No reviews for this listing.');
 
-  res.status(200).json({ reviews: reviews });
+  res.status(200).json(reviews);
 });
 
 //middleware function for setting the req.listing

@@ -9,13 +9,14 @@ What To Do
     - permissions on routes
 
 []Finish listing detail page
-    - reviews working
-    - reserve form working
-    - display all details/amenities
+    - reviews working [X]
+    - reservations working []
+    - proper display of dates in reserve form []
+    - display all details/amenities []
 
 4/12
-[] create form for submitting reviews
-[] get reviews working on detail page
+[X] create form for submitting reviews
+[X] get reviews working on detail page
 
 PATH TO FINAL APP:
 - Get all functionality working

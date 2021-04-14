@@ -45,14 +45,6 @@ class Header extends Component {
   render() {
     const { classes } = this.props;
 
-    const textLogo = (
-      <Typography variant='h3' className={classes.logo}>
-        <Link component={RouterLink} to='/' color='inherit'>
-          Kretey
-        </Link>
-      </Typography>
-    );
-
     const imgLogo = (
       <Link component={RouterLink} to='/' color='inherit'>
         <img src={kretlogo} className={classes.imgLogo}></img>
@@ -83,20 +75,22 @@ class Header extends Component {
           <Link
             className={classes.link}
             component={RouterLink}
-            to='/listing/create'
-            color='inherit'
-            variant='inherit'
-          >
-            Create Listing
-          </Link>
-          <Link
-            className={classes.link}
-            component={RouterLink}
             to='/profile'
             color='inherit'
             variant='inherit'
           >
             Profile
+          </Link>
+          <Link
+            className={classes.link}
+            component={RouterLink}
+            to='/listing/create'
+            color='inherit'
+            variant='inherit'
+          >
+            <Button variant='outlined' color='primary'>
+              Create Listing
+            </Button>
           </Link>
           <Button onClick={this.props.logout} variant='outlined'>
             Logout

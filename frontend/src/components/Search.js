@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import lakeimg from '../imgs/lake.jpg';
+import { Link as RouterLink } from 'react-router-dom';
 
 //material ui
 import { withStyles } from '@material-ui/core/styles';
-import { Container, Typography } from '@material-ui/core';
+import { Container, Typography, Button, Link } from '@material-ui/core';
 
 //antd
 import { DatePicker, Space } from 'antd';
@@ -13,6 +13,8 @@ const useStyles = {
     marginTop: '30px',
     height: '300px',
     backgroundColor: 'white',
+    textAlign: 'center',
+    paddingTop: '8px',
   },
   img: {
     height: '400px',
@@ -31,7 +33,27 @@ class Search extends Component {
     return (
       <>
         <Container maxWidth='md' className={classes.box}>
-          <RangePicker placeholder={['Start date...', 'End date...']} />
+          <Typography variant='h1' align='center'>
+            Kretey
+          </Typography>
+          <Typography
+            variant='subtitle1'
+            align='center'
+            color='textSecondary'
+            style={{ marginTop: '5px' }}
+          >
+            Peer to peer vavation rentals powered by Bitcoin
+          </Typography>
+          <Link
+            className={classes.link}
+            component={RouterLink}
+            to='/signup'
+            variant='inherit'
+          >
+            <Button variant='outlined' color='primary'>
+              Host Now
+            </Button>
+          </Link>
         </Container>
       </>
     );

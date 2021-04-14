@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 
 //material ui
@@ -12,6 +12,7 @@ import {
   CardContent,
   CardMedia,
   Link,
+  Modal,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -30,6 +31,7 @@ const useStyles = makeStyles({
 
 const EditListingCard = ({ listing }, index) => {
   const classes = useStyles();
+
   return (
     <>
       <Card className={classes.card} key={index}>
@@ -56,6 +58,14 @@ const EditListingCard = ({ listing }, index) => {
           <Button size='small' variant='outlined'>
             <Link component={RouteLink} to={`listing/edit/${listing._id}`}>
               Edit
+            </Link>
+          </Button>
+          <Button size='small' variant='outlined'>
+            <Link
+              component={RouteLink}
+              to={`listing/confirm/delete/${listing._id}`}
+            >
+              Delete
             </Link>
           </Button>
         </CardActions>

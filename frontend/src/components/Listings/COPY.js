@@ -4,12 +4,47 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 //material ui
-import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
-class imgUploadCopy extends Component {
+//bootstrap
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+//antd
+import { Row, Col, Divider } from 'antd';
+import 'antd/dist/antd.css';
+
+const useStyles = {
+  formBox: {
+    backgroundColor: 'white',
+    marginTop: '20px',
+    padding: '30px',
+    width: '900px',
+  },
+  stepBox: {
+    backgroundColor: 'white',
+    marginTop: '20px',
+    width: '300px',
+    height: '300px',
+  },
+  headerBox: {
+    backgroundColor: 'white',
+    marginTop: '20px',
+    width: '820px',
+    height: '125px',
+  },
+  text: {
+    fontWeight: 'bold',
+  },
+};
+
+class imgUpload extends Component {
   state = {
     selectedFiles: null,
+    uploaded: false,
   };
 
   //sets state with the files given in the form
@@ -46,6 +81,7 @@ class imgUploadCopy extends Component {
         )
         .then((res) => {
           console.log(res.data);
+          this.setState({ uploaded: true });
         })
         .catch((err) => {
           console.log(err);
@@ -58,16 +94,62 @@ class imgUploadCopy extends Component {
       return <Redirect to='/login' />;
     }
 
+    if (this.state.uploaded) {
+      return <Redirect to='/profile' />;
+    }
+
+    const { classes } = this.props;
     const { listingId } = this.props.match.params;
+
     return (
-      <Container maxWidth='md' style={{ marginTop: '100px' }}>
-        <form>
-          <input type='file' multiple onChange={this.fileChangeHandler} />
-          <Button color='primary' onClick={() => this.fileUploader(listingId)}>
-            Upload Image
-          </Button>
-        </form>
-      </Container>
+      <>
+        <Row align='center'>
+          <Col>
+            <Container className={classes.headerBox}>
+              <Typography variant='h3' align='center'>
+                Listing On Kretey
+              </Typography>
+              <Typography
+                variant='subtitle1'
+                color='textSecondary'
+                align='center'
+              >
+                Listing on Kretey is a simple two step process until your
+                property is ready for renters. Submit all the details and upload
+                some beautiful pictures
+              </Typography>
+            </Container>
+          </Col>
+        </Row>
+
+        <Row align='center' gutter={20}>
+          <Col>
+            <Container className={classes.stepBox}>
+              <Typography variant='h2'>Step 2/2</Typography>
+              <Typography variant='subtitle1' color='textSecondary'>
+                This is the second step to listing your property here on Kretey.
+                Upload some wonderful pictures and put your place on display for
+                renters!
+              </Typography>
+            </Container>
+          </Col>
+
+          <Col>
+            <Container className={classes.formBox}>
+              <Form>
+                <input type='file' multiple onChange={this.fileChangeHandler} />
+                <Button
+                  variant='secondary'
+                  onClick={() => this.fileUploader(listingId)}
+                  block
+                >
+                  UPLOAD & FINISH
+                </Button>
+              </Form>
+            </Container>
+          </Col>
+        </Row>
+      </>
     );
   }
 }
@@ -76,4 +158,4 @@ const mapStateToProps = (state) => ({
   isAuth: state.users.isAuth,
 });
 
-export default connect(mapStateToProps)(imgUploadCopy);
+export default connect(mapStateToProps)(withStyles(useStyles)(imgUpload));

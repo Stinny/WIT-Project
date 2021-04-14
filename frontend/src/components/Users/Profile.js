@@ -5,6 +5,9 @@ import { getUserListings } from '../../actions/listings';
 import { getUserInfo } from '../../actions/users';
 import moment from 'moment';
 import EditListingCard from '../Listings/EditListingCard';
+import UserListings from '../UserListings';
+import UserRes from '../UserRes';
+import YourRes from '../YourRes';
 
 //material ui
 import {
@@ -13,23 +16,14 @@ import {
   withStyles,
   Grid,
   Paper,
-  Button,
   Link,
+  Button,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import listings from '../../reducers/listings';
 
 //antd
-import {
-  List,
-  Avatar,
-  Button as antButton,
-  Skeleton,
-  Row,
-  Col,
-  Divider,
-  Statistic,
-} from 'antd';
+import { List, Avatar, Skeleton, Row, Col, Divider, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 
 const useStyles = makeStyles({
@@ -50,7 +44,7 @@ const useStyles = makeStyles({
   },
   dashBox: {
     backgroundColor: 'white',
-    height: '650px',
+    height: '1000px',
     width: '1110px',
     marginTop: '30px',
   },
@@ -67,12 +61,12 @@ const useStyles = makeStyles({
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
-  const listings = useSelector((state) => state.listings.listings);
   const user = useSelector((state) => state.users.user);
   const isAuth = useSelector((state) => state.users.isAuth); //using hook to pull state out from store
   const classes = useStyles();
   const dispatch = useDispatch(); //need this so dispatch can be passed into the actions
 
+  //this should only be used for getting user data
   useEffect(() => {
     setLoading(true);
     getUserInfo(dispatch);
@@ -148,21 +142,25 @@ const Profile = () => {
               <Col>
                 <Statistic title='Total LTC' value='0.00345' />
               </Col>
+              <Button variant='outlined'>Send To Wallet</Button>
+            </Row>
+            <Row>
+              <Statistic title='Total Bookings This Year' value='26' />
             </Row>
           </Container>
         </Col>
       </Row>
 
+      {/* here we will pass in user data to child components for listings, res you made, res for you */}
       <Container className={classes.dashBox}>
         <Typography variant='h3'>Your Listings</Typography>
         <Divider />
-        <Row gutter={18}>
-          {listings.map((listing, index) => (
-            <Col key={index}>
-              <EditListingCard listing={listing} />
-            </Col>
-          ))}
-        </Row>
+        <UserListings />
+        <Divider />
+
+        <Typography variant='h3'>Reservations You Have Made</Typography>
+        <Divider />
+        <UserRes />
       </Container>
     </>
   );

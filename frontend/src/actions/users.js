@@ -6,6 +6,7 @@ import {
   REGISTER_SUCCESS,
   GET_USER_INFO,
   CLEAR_LISTINGS,
+  ERROR,
 } from './types';
 
 export const login = (email, password) => (dispatch) => {
@@ -43,7 +44,10 @@ export const register = ({ username, email, password }) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err); //this is where I need to dispatch error messages
+      dispatch({
+        type: ERROR,
+        payload: err.response.data,
+      });
     });
 };
 

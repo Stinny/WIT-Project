@@ -13,6 +13,9 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
 
+//bootstrap
+import Alert from 'react-bootstrap/Alert';
+
 const useStyles = {
   box: {
     backgroundColor: 'white',
@@ -53,88 +56,94 @@ class Signup extends Component {
       return <Redirect to='/' />;
     }
 
-    const { classes } = this.props;
+    const { classes, error } = this.props;
 
     return (
-      <Container component='main' maxWidth='xs' className={classes.box}>
-        <CssBaseline />
-        <div>
-          <Typography component='h1' variant='h3' align='center'>
-            Sign Up
-          </Typography>
-          <form noValidate>
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
-              autoFocus
-              onChange={this.onChange}
-            />
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              id='username'
-              label='Username'
-              name='username'
-              autoComplete='username'
-              onChange={this.onChange}
-            />
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              name='password'
-              label='Password'
-              type='password'
-              id='password'
-              autoComplete='current-password'
-              onChange={this.onChange}
-            />
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              name='password2'
-              label='Confirm Password'
-              type='password'
-              id='password2'
-              autoComplete='current-password'
-              onChange={this.onChange}
-            />
-            <Button
-              type='submit'
-              fullWidth
-              variant='contained'
-              color='primary'
-              onClick={this.onSubmit}
-            >
-              SIGN UP
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link component={RouteLink} to={'/login'} variant='body2'>
-                  {'Already have an account? Login'}
-                </Link>
+      <>
+        <Container maxWidth='md'>
+          {error ? <Alert variant='danger'>{error}</Alert> : null}
+        </Container>
+        <Container component='main' maxWidth='xs' className={classes.box}>
+          <CssBaseline />
+          <div>
+            <Typography component='h1' variant='h3' align='center'>
+              Sign Up
+            </Typography>
+            <form noValidate>
+              <TextField
+                variant='outlined'
+                margin='normal'
+                required
+                fullWidth
+                id='email'
+                label='Email Address'
+                name='email'
+                autoComplete='email'
+                autoFocus
+                onChange={this.onChange}
+              />
+              <TextField
+                variant='outlined'
+                margin='normal'
+                required
+                fullWidth
+                id='username'
+                label='Username'
+                name='username'
+                autoComplete='username'
+                onChange={this.onChange}
+              />
+              <TextField
+                variant='outlined'
+                margin='normal'
+                required
+                fullWidth
+                name='password'
+                label='Password'
+                type='password'
+                id='password'
+                autoComplete='current-password'
+                onChange={this.onChange}
+              />
+              <TextField
+                variant='outlined'
+                margin='normal'
+                required
+                fullWidth
+                name='password2'
+                label='Confirm Password'
+                type='password'
+                id='password2'
+                autoComplete='current-password'
+                onChange={this.onChange}
+              />
+              <Button
+                type='submit'
+                fullWidth
+                variant='contained'
+                color='primary'
+                onClick={this.onSubmit}
+              >
+                SIGN UP
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link component={RouteLink} to={'/login'} variant='body2'>
+                    {'Already have an account? Login'}
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
-          </form>
-        </div>
-      </Container>
+            </form>
+          </div>
+        </Container>
+      </>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   isAuth: state.users.isAuth,
+  error: state.errors.error,
 });
 
 export default connect(mapStateToProps, { register })(

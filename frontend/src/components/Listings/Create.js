@@ -46,7 +46,7 @@ const useStyles = makeStyles({
 
 const Create = () => {
   const classes = useStyles();
-  const user = useSelector((state) => state.users.user);
+  //const user = useSelector((state) => state.users.user);
   const isAuth = useSelector((state) => state.users.isAuth);
   const dispatch = useDispatch();
 
@@ -64,6 +64,7 @@ const Create = () => {
   const [numOfBeds, setNumOfBeds] = useState('');
   const [amenities, setAmenities] = useState([]);
   const [price, setPrice] = useState('');
+  const [user, setUser] = useState({});
 
   const userId = user.userId;
 
@@ -82,7 +83,14 @@ const Create = () => {
   //used for getting the requesting user info
   useEffect(() => {
     setLoading(true);
-    getUserInfo(dispatch);
+    axiosInstance
+      .get('/auth/getuserinfo')
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err); //need to dispatch an error message here
+      });
     setLoading(false);
   }, []);
 
@@ -123,8 +131,7 @@ const Create = () => {
               align='center'
             >
               Listing on Kretey is a simple two step process until your property
-              is ready for renters. Submit all the details and upload some
-              beautiful pictures
+              is ready for reservations
             </Typography>
           </Container>
         </Col>
@@ -218,6 +225,9 @@ const Create = () => {
               <Typography variant='subtitle2' color='textSecondary'>
                 Really try to think of everything
               </Typography>
+              <Typography variant='subtitle2' color='textSecondary'>
+                Hold CTRL to select multiple
+              </Typography>
               <Divider />
 
               <Form.Group controlId='exampleForm.ControlSelect2'>
@@ -241,6 +251,11 @@ const Create = () => {
                   <option>Pool Table</option>
                   <option>Microwave</option>
                   <option>Toaster</option>
+                  <option>WiFi</option>
+                  <option>Storage</option>
+                  <option>Kitchen</option>
+                  <option>Basement</option>
+                  <option>Hangers</option>
                 </Form.Control>
               </Form.Group>
 
@@ -260,7 +275,7 @@ const Create = () => {
                 />
               </Form.Group>
               <Button variant='secondary' type='submit' block>
-                NEXT
+                NEXT, UPLOAD SOME IMAGES
               </Button>
             </Form>
           </Container>

@@ -57,7 +57,7 @@ const Listings = () => {
     <>
       <Container maxWidth='lg' className={classes.listingCon}>
         <Typography align='center' variant='h3'>
-          Recent Listings
+          All Listings
         </Typography>
 
         <Divider />
